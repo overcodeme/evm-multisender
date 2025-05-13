@@ -1,9 +1,86 @@
 {
     "TESTNET": {
+        "Ethereum Sepolia": {
+            "RPC": "sepolia.infura.io",
 
+            "TOKENS": {
+                "NATIVE": {
+                    "CONTRACT_ADDRESS": "",
+                    "DECIMAL": 18
+                }
+            }
+        },
+
+        "Base Sepolia": {
+            "RPC": "https://base-sepolia.drpc.org",
+
+            "TOKENS": {
+                "NATIVE": {
+                    "CONTRACT_ADDRESS": "",
+                    "DECIMAL": 18
+                }
+            }
+        }
     },
+    
 
     "MAINNET": {
-        
+        "Ethereum" : {
+            "RPC": "mainnet.infura.io",
+
+            "TOKENS": {
+                "NATIVE": {
+                    "CONTRACT_ADDRESS": "",
+                    "DECIMAL": 18
+                },
+
+                "USDC": {
+                    "CONTRACT_ADDRESS": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+                    "DECIMAL": 6
+                },
+
+                "USDT": {
+                    "CONTRACT_ADDRESS": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+                    "DECIMAL": 6
+                }
+            }
+        },
+
+        "Base": {
+            "RPC": "mainnet.base.org",
+
+            "TOKENS": {
+                "NATIVE": {
+                    "CONTRACT_ADDRESS": "",
+                    "DECIMAL": 18
+                },
+
+                "USDC": {
+                    "CONTRACT_ADDRESS": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+                    "DECIMAL": 6
+                }
+            }
+        },
+
+        "Arbitrum": {
+            "RPC": "arb1.arbitrum.io/rpc",
+
+            "TOKENS": {
+                "NATIVE": {
+                    "CONTRACT_ADDRESS": "",
+                    "DECIMAL": 18
+                },
+
+                "USDT": {
+                    "CONTRACT_ADDRESS": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
+                    "DECIMAL": 6
+                },
+
+                "USDC": {
+                    "CONTRACT_ADDRESS": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+                    "DECIMAL": 6
+                }
+            }
+        }
     }
 }
