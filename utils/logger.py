@@ -4,19 +4,19 @@ from datetime import datetime, timezone
 
 class Logger:
 
-    def _log(self, wallet, message, color=Fore.WHITE):
+    def _log(self, message, color=Fore.WHITE):
         time = f'{datetime.now(timezone.utc).strftime('%d.%m.%Y %H:%M:%S')}'
-        print(f'{time} | {color} | {wallet} | {message} {Style.RESET_ALL}')
+        print(f'{time} | {color} | {message} {Style.RESET_ALL}')
 
 
-    def error(self, wallet, message):
-        self._log(wallet, message, Fore.RED)
+    def error(self, message):
+        self._log(message, Fore.RED)
 
-    def success(self, wallet, message):
-        self._log(wallet, message, Fore.GREEN)
+    def success(self, message):
+        self._log (message, Fore.GREEN)
 
-    def info(self, wallet, message):
-        self._log(wallet, message)
+    def info(self, message):
+        self._log(message)
 
 
 logger = Logger()

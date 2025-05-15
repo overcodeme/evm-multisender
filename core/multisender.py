@@ -1,3 +1,4 @@
+from .tx_sender import Sender
 
 
 def send_one_to_many():
