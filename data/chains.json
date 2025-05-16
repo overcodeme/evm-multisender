@@ -1,6 +1,7 @@
 {
     "TESTNET": {
         "Ethereum Sepolia": {
+            "ChainID": 11155111,
             "RPC": "sepolia.infura.io",
 
             "TOKENS": {
@@ -12,6 +13,7 @@
         },
 
         "Base Sepolia": {
+            "ChainID": 84532,
             "RPC": "https://base-sepolia.drpc.org",
 
             "TOKENS": {
@@ -26,6 +28,7 @@
 
     "MAINNET": {
         "Ethereum" : {
+            "ChainID": 1,
             "RPC": "mainnet.infura.io",
 
             "TOKENS": {
@@ -47,6 +50,7 @@
         },
 
         "Base": {
+            "ChainID": 8453,
             "RPC": "mainnet.base.org",
 
             "TOKENS": {
@@ -63,6 +67,7 @@
         },
 
         "Arbitrum": {
+            "ChainID": 42161,
             "RPC": "arb1.arbitrum.io/rpc",
 
             "TOKENS": {
