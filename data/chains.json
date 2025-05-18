@@ -5,7 +5,7 @@
             "RPC": "sepolia.infura.io",
 
             "TOKENS": {
-                "NATIVE": {
+                "ETH": {
                     "CONTRACT_ADDRESS": "",
                     "DECIMAL": 18
                 }
@@ -17,7 +17,19 @@
             "RPC": "https://base-sepolia.drpc.org",
 
             "TOKENS": {
-                "NATIVE": {
+                "ETH": {
+                    "CONTRACT_ADDRESS": "",
+                    "DECIMAL": 18
+                }
+            }
+        },
+
+        "Sahara Testnet": {
+            "ChainID": 313313,
+            "RPC": "testnet.saharalabs.ai",
+
+            "TOKENS": {
+                "SAH": {
                     "CONTRACT_ADDRESS": "",
                     "DECIMAL": 18
                 }
@@ -32,7 +44,7 @@
             "RPC": "mainnet.infura.io",
 
             "TOKENS": {
-                "NATIVE": {
+                "ETH": {
                     "CONTRACT_ADDRESS": "",
                     "DECIMAL": 18
                 },
@@ -54,7 +66,7 @@
             "RPC": "mainnet.base.org",
 
             "TOKENS": {
-                "NATIVE": {
+                "ETH": {
                     "CONTRACT_ADDRESS": "",
                     "DECIMAL": 18
                 },
@@ -71,7 +83,7 @@
             "RPC": "arb1.arbitrum.io/rpc",
 
             "TOKENS": {
-                "NATIVE": {
+                "ETH": {
                     "CONTRACT_ADDRESS": "",
                     "DECIMAL": 18
                 },

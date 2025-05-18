@@ -175,3 +175,6 @@ cython_debug/
 
 # Wallets
 data/wallets.txt
+
+# Private key
+data/private_key.txt
