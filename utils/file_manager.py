@@ -5,7 +5,7 @@ import os
 def load_txt(file_path):
     if not os.path.exists(file_path):
         with open(file_path, 'w') as file:
-            pass
+            return None
 
     else:
         with open(file_path, 'r') as file:

@@ -6,27 +6,29 @@ from utils.logger import logger
 
 class Sender:
 
-    def __init__(self, w3:Web3,  private_key, token=None):
+    def __init__(self, w3:Web3,  private_key, token=None, chainID=None):
         self.w3 = w3
+        self.chainID = chainID
         self.token = token
-        self.account = Account.from_key(private_key)
+        self.private_key = private_key
+        self.wallet_address = Account.from_key(private_key).address
         self.contract = w3.eth.contract(address=token['ca'], abi=ERC20_ABI) if token else None
 
 
     def get_balance(self):
-        balance = self.contract.functions.balanceOf(self.account.address).call() if self.token else self.w3.eth.get_balance(self.account.address)
+        balance = self.contract.functions.balanceOf(self.wallet_address).call() if self.token else self.w3.eth.get_balance(self.wallet_address)
         return balance / (10 ** self.token['decimal']) if self.token else balance / (10 ** 18)
 
 
     def approve(self, amount):
-        tx = self.contract.functions.approve(self.account.address, self.w3.to_wei(amount, 'ether')).buildTransaction({
+        tx = self.contract.functions.approve(self.wallet_address, self.w3.to_wei(amount, 'ether')).buildTransaction({
             'chainId': self.token['chainId'],
             'gasPrice': self.w3.eth.gas_price,
-            'nonce': self.w3.eth.get_transaction_count(self.account.address)
+            'nonce': self.w3.eth.get_transaction_count(self.wallet_address)
         })
         tx['gas'] = self.w3.eth.estimate_gas(tx)
 
-        signed_tx = self.account.sign_transaction(tx)
+        signed_tx = self.w3.eth.account.sign_transaction(tx, self.private_key)
         tx_hash = self.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
         logger.info(f'Transaction sent with hash: {tx_hash.hex()}')
 
@@ -38,24 +40,32 @@ class Sender:
 
 
     def check_allowance(self):
-        allowance_amount = self.contract.functions.allowance(self.token['ca'], self.account.address)
+        allowance_amount = self.contract.functions.allowance(self.token['ca'], self.wallet_address)
         return allowance_amount / (10 ** self.token['decimals'])
 
 
     def transfer(self, to, amount):
         if self.token:
-            pass
+            tx = self.token.functions.transfer(to, self.w3.to_wei(amount, 'ether')).build_transaction({
+            'gasPrice': self.w3.eth.gas_price,
+            'nonce': self.w3.eth.get_transaction_count(self.wallet_address),
+            'chainId': self.token['chainID']
+            })
+            tx['gas']
         else:
+            print(self.chainID)
             tx = {
-                'to': to,
-                'value': self.w3.to_wei(amount),
-                'gasPrice': self.w3.eth.gas_price,
-                'nonce': self.w3.eth.get_transaction_count(self.account.address)
+                "chainId": self.chainID,
+                "from": self.wallet_address,
+                "gas": 21000,
+                "gasPrice": self.w3.eth.gas_price,
+                "nonce": self.w3.eth.get_transaction_count(self.wallet_address),
+                "to": self.w3.to_checksum_address(to),
+                "value": self.w3.to_wei(amount, 'ether')
             }
-            tx['gas'] = self.w3.eth.estimate_gas(tx)
 
-            signed_tx = self.account.sign_transaction(tx)
-            tx_hash = self.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+            signed_tx = self.w3.eth.account.sign_transaction(tx, self.private_key)
+            tx_hash = self.w3.eth.send_raw_transaction(signed_tx.raw_transaction)
             logger.info(f'Transaction sent with hash: {tx_hash.hex()}')
 
             tx_receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash)

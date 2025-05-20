@@ -40,9 +40,9 @@ def menu():
                         if tok == len(tokens_menu):
                             break
 
-                        token = mainnet_menu[tok-1]
+                        token = tokens_menu[tok-1]
 
-                        return [chain, token]
+                        return ['TESTNET', chain, token]
 
             elif opt == 2:
                 while True:
@@ -65,9 +65,9 @@ def menu():
                         if tok == len(tokens_menu):
                             break
 
-                        token = mainnet_menu[tok-1]
+                        token = tokens_menu[tok-1]
 
-                        return [chain, token]
+                        return ['MAINNET', chain, token]
 
             elif opt == 3:
                 break
@@ -76,6 +76,8 @@ def menu():
 
         except ValueError:
             print('You must input a number')
+            input()
 
         except Exception as e:
             print(f'An error occurred: {e}')
+            input()

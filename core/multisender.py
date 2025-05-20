@@ -7,24 +7,24 @@ from colorama import Fore, Style
 
 WALLETS = load_txt('data/wallets.txt')
 
-def send_one_to_many(chain_rpc, private_key, token=None):
+def send_one_to_many(chain_rpc, private_key, token=None, chainID=None):
     w3 = Web3(Web3.HTTPProvider(chain_rpc))
-    sender = Sender(w3, private_key, token)
+    sender = Sender(w3, private_key, token, chainID)
+    
+    # try:
+    print(f'Balance: {Fore.CYAN}{sender.get_balance()}{Style.RESET_ALL}\n')
+    amount = float(input('Input amount to send on each wallet: '))
+    summary = amount * len(WALLETS)
 
-    try:
-        print(f'Balance: {Fore.CYAN}{sender.get_balance()}{Style.RESET_ALL}')
-        amount = float(input('Input amount to send on each wallet: '))
-        summary = amount * len(WALLETS)
+    if token:
+        allowance_amount = sender.check_allowance()
 
-        if token:
-            allowance_amount = sender.check_allowance()
+        if allowance_amount < summary:
+            sender.approve(summary)
 
-            if allowance_amount < summary:
-                sender.approve(summary)
+    for i, w in enumerate(WALLETS, start=1):
+        sender.transfer(w, amount)
+        logger.info(f'Progress: {i}/{len(WALLETS)}')
 
-        for i, w in enumerate(WALLETS, start=1):
-            logger.info(f'Progress: {i}/{len(WALLETS)}')
-            sender.transfer(w, amount)
-
-    except Exception as e:
-        logger.error(f'An exception occurred: {e}')
+    # except Exception as e:
+    #     logger.error(f'An exception occurred: {e}')

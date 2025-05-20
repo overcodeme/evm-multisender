@@ -2,7 +2,7 @@
     "TESTNET": {
         "Ethereum Sepolia": {
             "ChainID": 11155111,
-            "RPC": "sepolia.infura.io",
+            "RPC": "https://1rpc.io/sepolia",
 
             "TOKENS": {
                 "ETH": {
@@ -26,7 +26,7 @@
 
         "Sahara Testnet": {
             "ChainID": 313313,
-            "RPC": "testnet.saharalabs.ai",
+            "RPC": "https://testnet.saharalabs.ai",
 
             "TOKENS": {
                 "SAH": {
@@ -41,7 +41,7 @@
     "MAINNET": {
         "Ethereum" : {
             "ChainID": 1,
-            "RPC": "mainnet.infura.io",
+            "RPC": "https://mainnet.infura.io",
 
             "TOKENS": {
                 "ETH": {
@@ -63,7 +63,7 @@
 
         "Base": {
             "ChainID": 8453,
-            "RPC": "mainnet.base.org",
+            "RPC": "https://mainnet.base.org",
 
             "TOKENS": {
                 "ETH": {
@@ -80,7 +80,7 @@
 
         "Arbitrum": {
             "ChainID": 42161,
-            "RPC": "arb1.arbitrum.io/rpc",
+            "RPC": "https://arb1.arbitrum.io/rpc",
 
             "TOKENS": {
                 "ETH": {
