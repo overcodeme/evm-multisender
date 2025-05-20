@@ -22,9 +22,9 @@ def main():
     print(f'Token: {Fore.CYAN}{token}{Style.RESET_ALL}')
 
     if CHAINS[tom][chain]['TOKENS'][token]['CONTRACT_ADDRESS']:
-        send_one_to_many(chain_rpc=CHAINS[tom][chain]["RPC"], private_key=PRIVATE_KEY[0], token={'ca': CHAINS[tom][chain][token]['CONTRACT_ADDRESS']}, chainID=CHAINS[tom][chain]['ChainID'])
+        send_one_to_many(chain_rpc=CHAINS[tom][chain]["RPC"], private_key=PRIVATE_KEY[0], token={'ChainID': CHAINS[tom][chain]['ChainID'], 'symbol': token, 'ca': CHAINS[tom][chain][token]['CONTRACT_ADDRESS'], 'decimal': CHAINS[tom][chain]['TOKENS'][token]['DECIMAL']}, chainID=CHAINS[tom][chain]['ChainID'])
     else:
-        send_one_to_many(chain_rpc=CHAINS[tom][chain]["RPC"], private_key=PRIVATE_KEY[0], chainID=CHAINS[tom][chain]['ChainID'])
+        send_one_to_many(chain_rpc=CHAINS[tom][chain]["RPC"], private_key=PRIVATE_KEY[0], token={'ChainID': CHAINS[tom][chain]['ChainID'], 'symbol': token, 'decimal': CHAINS[tom][chain]['TOKENS'][token]['DECIMAL']})
 
 
 if __name__ == '__main__':
